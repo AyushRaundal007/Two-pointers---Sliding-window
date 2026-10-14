@@ -1,0 +1,18 @@
+Two pointers / Sliding window approach
+
+1. Constant Window
+2. Longest subarray/substring 
+with a condition
+3. Number of subarrays satisfying the condition
+   example: find number of subarrays whose sum = k
+
+   procedure :
+   step 1 : find number of subarrays whose sum<=k  -> time comlplexity 0(n)
+   =x
+   step 2 : find number of subarrays whose sum <=k-1  -> time complexity 0(n) 
+   =y
+
+   ans = number of subarrays whose sum = k 
+   =x-y
+
+4. Shortest minimum window
