@@ -7,7 +7,7 @@ using namespace std;
 // Q4.Longest substring non repeating characters
 
 // Brute Force approach
-
+// O(n^3)
 bool condition(const string &s,int i,int j){
     unordered_set<char> st;
     for(int x=i; x<=j; x++){
@@ -64,6 +64,7 @@ int version(string s){
 }
 
 // Most optimal Approach
+// O(n^2)
 bool isunique(string &s, int i, int j,int next){
     for(int x=i; x<=j; x++){
         if(s[x]==s[next]){
@@ -73,7 +74,7 @@ bool isunique(string &s, int i, int j,int next){
     return true;
 }
 
-int versionx(string s){
+int version1(string s){
     int n=s.size();
 
     if(n==0){
@@ -104,8 +105,50 @@ int versionx(string s){
     return maxsize;
 }
 
+// using hash
+// O(n)
+int version2(string &s){
+    int n=s.size();
+
+    if(n==0){
+        return 0;
+    }
+
+    // defining hash
+    int hash[256]={0};
+
+    // n>=1
+    // first window withsize one;
+    int i=0;
+    int j=0;
+    hash[s[0]]++;
+    int next=1;
+
+    int maxsize=1;
+
+    while(next<n){
+        if(hash[s[next]]==0){
+            j++;
+            next++;
+            hash[s[j]]++;
+            maxsize=max(maxsize,j-i+1);
+        }
+        else{
+            hash[s[i]]--;
+            i++;
+            if(i>j){
+                j=i;
+                hash[s[j]]++;
+                next++;
+            }
+        }
+    }
+    return maxsize;
+}
+
 int main(){
     string s="abcdefghabcabaacbd";
     cout << version(s) << endl;
-    cout << versionx(s) << endl;
+    cout << version1(s) << endl;
+    cout << version2(s) << endl;
 }
