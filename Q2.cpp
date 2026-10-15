@@ -8,7 +8,7 @@ using namespace std;
 int version0(vector<int> &nums,int k){
     int n=nums.size();
     int max_size=1;
-    for(int i=0; i<=n-2; i++){
+    for(int i=0; i<=n-1; i++){
         for(int j=i; j<=n-1; j++){
             // i is the starting point of the substring and 
             // j is the ending point of the substring
